@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard(props) {
+export default function Transferboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -157,7 +157,7 @@ export default function Dashboard(props) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Transfer
           </Typography>
 
           <Typography>

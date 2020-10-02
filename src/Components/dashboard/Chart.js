@@ -53,7 +53,7 @@ export default function Chart() {
                 fill: theme.palette.text.primary,
               }}
             >
-              Sales ($)
+              Balance ($)
             </Label>
           </YAxis>
           <Line

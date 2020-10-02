@@ -16,26 +16,28 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Button, Paper } from '@material-ui/core';
 import Dashboard from '../dashboard/Dashboard.js';
+import Transferboard from '../dashboard/Transferboard.js';
 import SignUp from '../SignUp/SignUp.js';
 import SignInSide from '../SignInSide/SignInSide.js';
 
 
 import { positions } from '@material-ui/system';
 
-function AuthenticatedApp() {
+function AuthenticatedApp(props) {
 
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route path="/about">
-            <AboutRender/>
+            <DashboardRender {...props} />
           </Route>
           <Route path="/dashboard">
-            <dashBoard/>
+            <DashboardRender {...props} />
+          </Route>
+
+          <Route path="/transfer">
+            <TransferboardRender {...props} />
           </Route>
         </Switch>
       </div>
@@ -43,51 +45,29 @@ function AuthenticatedApp() {
   );
 }
 
-// You can think of these components as "pages"
-// in your app.
 
-function Home(){
+function DashboardRender(props) {
 
-  // Declare a new state variable, username
-  let [username, setUsername] = useState('username');
-  const [signedIn, setSignedIn] = useState('signedIn');
+  console.log(props)
 
-  username = 'Logged In User!'
-
-  if(signedIn) {
-    return DashboardRender(username); 
-  }
-}
-
-// TODO this about page
-function AboutRender() {
-  return (
-    null
-  );
-}
-
-function DashboardRender(passedUsername) {
-
-  let DefaultUser = "Not Logged In User"
   let ret = (
           <Dashboard 
-            username={DefaultUser}
+            {... props}
           />);
-
-  // we were given a user
-  if(typeof passedUsername !== 'undefined')  {
-    ret = (
-      <Dashboard
-        username={passedUsername}
-      />
-    )
-  }
 
   return ret;
 }
 
 
+function TransferboardRender(props) {
 
+  let ret = (
+          <Transferboard 
+            {... props}
+          />);
+
+  return ret;
+}
 
 
 

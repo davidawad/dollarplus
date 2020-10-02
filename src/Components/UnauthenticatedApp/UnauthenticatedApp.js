@@ -36,7 +36,7 @@ import { positions } from '@material-ui/system';
 // making sure things like the back button and bookmarks
 // work properly.
 
-function UnauthenticatedApp() {
+function UnauthenticatedApp(props) {
 
   return (
     <Router>
@@ -50,7 +50,14 @@ function UnauthenticatedApp() {
         */}
         <Switch>
           <Route exact path="/">
-            <Home/>
+            <Home
+              {... props}
+            />
+          </Route>
+          <Route exact path="/sign_in">
+            <SignInSideRender
+              {... props}
+            />
           </Route>
           <Route path="/about">
             <AboutRender/>
@@ -67,13 +74,19 @@ function UnauthenticatedApp() {
 // You can think of these components as "pages"
 // in your app.
 
-function Home(){
+function Home(props){
 
-  // Declare a new state variable, username
-  const [username, setUsername] = useState('username');
-  const [signedIn, setSignedIn] = useState('signedIn');
+  // TODO read cookies from browser? 
 
-  return SignInSideRender(setSignedIn);
+  return SignInSideRender(props);
+}
+
+function SignInSideRender(props) {
+  return (
+    <SignInSide
+      {... props}
+      />
+  );
 }
 
 // TODO this about page
@@ -83,61 +96,11 @@ function AboutRender() {
   );
 }
 
-function SignInSideRender(setSignedIn) {
-  return (
-    <SignInSide
-      callback={setSignedIn}
-      />
-  );
-}
-
 function SignUpRender() {
   return (
     <SignUp/>
   );
 }
-
-
-// if signed in render a different form? lol
-
-
-
-
-
-
-{/* 
-<Container maxWidth="lg" className="App">
-      <Paper>
-
-        <Button variant="contained" color="secondary" position={positions.top}>
-          This is a button in the corner? 
-        </Button>
-        
-        
-        <br></br>
-        
-        <img src={logo} className="App-logo" alt="logo" />
-        
-        
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App + Material-UI
-        </Typography>
-        
-        
-
-        <Button variant="contained" color="primary">
-          Primary Button
-        </Button>
-        <Button variant="contained" color="secondary">
-          Secondary Button
-        </Button>
-
-
-        
-
-      </Paper>
-    </Container>
-*/} 
 
 
 export default UnauthenticatedApp;

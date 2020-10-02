@@ -12,14 +12,17 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import * as CONSTANTS from '../constants.js';
+import * as CONSTANTS from '../CONSTANTS.js';
+
+import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
+
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        $ + 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -90,8 +93,24 @@ function requestAuth(callback){
 }
 
 
-export default function SignInSide(callback) {
+
+
+function SignInSide(props) {
   const classes = useStyles();
+
+  // const [fireRedirect, setRedirect] = React.useState(false);
+
+
+  function formHandler (e) {
+    console.log("FORM HANDLER")
+    e.preventDefault()
+    this.props.setUser({name: 'Signed In User from SignInSide > formHandler'})
+    this.props.history.push('/dashboard');
+    // eslint-disable-next-line no-restricted-globals
+    // location.replace('/dashboard');
+  } 
+
+
 
   // when signin happens, use this.props.callback to set the signed in username
 
@@ -107,7 +126,10 @@ export default function SignInSide(callback) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form 
+            className={classes.form} 
+            onSubmit ={this.props.history.push('/dashboard')}
+            noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -140,6 +162,7 @@ export default function SignInSide(callback) {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={ this.props.history.push('/dashboard') }
             >
               Sign In
             </Button>
@@ -150,7 +173,7 @@ export default function SignInSide(callback) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/sign_up" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -164,3 +187,6 @@ export default function SignInSide(callback) {
     </Grid>
   );
 }
+
+
+export default withRouter(SignInSide);
