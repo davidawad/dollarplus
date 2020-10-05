@@ -104,8 +104,8 @@ function SignInSide(props) {
   function formHandler (e) {
     console.log("FORM HANDLER")
     e.preventDefault()
-    this.props.setUser({name: 'Signed In User from SignInSide > formHandler'})
-    this.props.history.push('/dashboard');
+    props.setUser({name: 'Signed In User from SignInSide > formHandler'})
+    props.history.push('/dashboard');
     // eslint-disable-next-line no-restricted-globals
     // location.replace('/dashboard');
   } 
@@ -128,7 +128,7 @@ function SignInSide(props) {
           </Typography>
           <form 
             className={classes.form} 
-            onSubmit ={this.props.history.push('/dashboard')}
+            //onSubmit ={props.history.push('/dashboard')}
             noValidate>
             <TextField
               variant="outlined"
@@ -162,7 +162,7 @@ function SignInSide(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={ this.props.history.push('/dashboard') }
+              //onClick={ props.history.push('/dashboard') }
             >
               Sign In
             </Button>

@@ -8,10 +8,16 @@ import UnauthenticatedApp from '../UnauthenticatedApp/UnauthenticatedApp'
 // const UnauthenticatedApp = React.lazy(() => import('../UnauthenticatedApp/UnauthenticatedApp.js'))
 
 
-const sampleUser = {
-  name: 'Jonathan SIGSEGV', 
+let sampleUser = {
+  name: false, 
   walletTotal: 3024.00, // in usd
 }
+
+// for demo purposes 
+if (false) {
+  sampleUser.name = 'Jonathan SIGSEGV'
+}
+
 
 function App() {
   const [user, setUser] = React.useState(sampleUser)

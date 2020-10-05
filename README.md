@@ -1,3 +1,14 @@
+# Dolllar Plus
+
+
+This is an application that allows users to hold and transfer debt obligations instead of actual currencies. The debts are settled between the issuers and owners on the other sides of the transactions that the user facilitates for real goods and services.
+
+![](./assets/screenshots/login.png)
+![](./assets/screenshots/dashboard.png)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

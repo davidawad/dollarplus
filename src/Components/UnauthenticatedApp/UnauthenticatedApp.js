@@ -54,7 +54,7 @@ function UnauthenticatedApp(props) {
               {... props}
             />
           </Route>
-          <Route exact path="/sign_in">
+          <Route exact path={"/sign_in" | "/login"}>
             <SignInSideRender
               {... props}
             />
